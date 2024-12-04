@@ -1,5 +1,10 @@
 
 @font-face{
   font-family: 'elounda-regular';
-  src: url('../assets/fonts/elounda-regular.otf');
+  src: url('../assets/fonts/elounda-regular.woff2');
+}
+
+@font-face{
+  font-family: 'clash-grotesk';
+  src:url('../assets/fonts/ClashGrotesk-Variable.woff2')
 }

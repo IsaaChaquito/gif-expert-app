@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SearchIcon } from "../assets/icons/search";
+import { SearchIcon } from "../assets/icons";
 
 export const AddCategory = ({ onAddCategory }) => {
 
