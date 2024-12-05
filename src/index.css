@@ -35,7 +35,7 @@ body {
 .text { 
   stroke-dasharray: 220; 
   stroke-dashoffset: 220; 
-  animation: draw 10s ease-in-out alternate infinite; 
+  animation: draw 5s ease-in-out alternate infinite; 
 } 
 
 @keyframes draw { 
@@ -46,4 +46,15 @@ body {
   { 
     stroke-dashoffset: 0; 
   } 
+}
+
+/* Simplebar-react */
+.simplebar-scrollbar::before {
+  background-color: #6a6464;
+  opacity: .4 !important;
+}
+
+/* only shows the scrollbar over the scrollable container */
+.simplebar-track.simplebar-vertical{
+  z-index: -1;
 }

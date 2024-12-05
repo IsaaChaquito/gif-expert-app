@@ -21,7 +21,7 @@ export const GifItem = ({ id, title, url }) => {
   }
 
   return (
-    <div className="w-full flex flex-col items-center flex-nowrap" key={id}>
+    <div className="relative w-full flex flex-col items-center flex-nowrap" key={id}>
       <p title={ title } className="text-left text-nowrap text-ellipsis max-w-full self-start overflow-hidden">{ title.trim().length > 0 ? title : 'Gif with no title' }</p>
       <button 
         onClick={ handleScaleImage }
@@ -37,7 +37,7 @@ export const GifItem = ({ id, title, url }) => {
 
       {
         state.isScale && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black/80 z-40 animate-[fade-in_0.2s_ease]">
+          <div className="fixed top-0 left-0 w-full h-full backdrop-blur-sm bg-black/80 z-50 animate-[fade-in_0.2s_ease]">
             <div 
               onClick={ 
                 (e) => (e.target === e.currentTarget) && handleScaleImage() 
@@ -46,7 +46,7 @@ export const GifItem = ({ id, title, url }) => {
             > 
               <CloseIcon 
                 onClick={ handleScaleImage } 
-                className="absolute top-5 right-5 text-white/80 w-8 h-8 hover:p-1 bg-black/50 shadow-2xl rounded cursor-pointer duration-300" 
+                className="absolute top-5 right-5 text-white/80 w-8 h-8 hover:p-1 bg-black/50 shadow-2xl rounded cursor-pointer duration-300 z-50" 
               />
 
               <div 
@@ -55,19 +55,31 @@ export const GifItem = ({ id, title, url }) => {
                 Esc
               </div>
 
-              <div className='relative w-full flex justify-center items-center'>  
+              {/* <div className='relative w-full flex justify-center items-center'>  
                 <img 
-                  className="w-[80%] max-w-[1200px] aspect-video rounded" 
+                  className="w-[80%] max-w-[1200px] aspect-video rounded shadow-2xl" 
                   src={ url } 
                   alt={ title } 
                 />
-                { title &&
-                  <p className='absolute bottom-0 px-2 py-0.5 bg-black/60 text-white z-10 text-center text-xs sm:text-sm md:text-lg lg:text-xl xl:text-2xl '>
-                  { title }
-                </p>
-
+                { 
+                  title &&
+                    <p className='absolute bottom-0 px-2 py-0.5 bg-black/60 text-white z-10 text-center text-xs sm:text-sm md:text-lg lg:text-xl xl:text-2xl '>
+                      { title }
+                    </p>
                 }
-              </div>
+              </div> */}
+
+                <img 
+                  className="w-[80%] max-w-[1200px] aspect-video rounded shadow-2xl" 
+                  src={ url } 
+                  alt={ title } 
+                />
+                {
+                  title &&
+                  <p className='absolute bottom-0 w-full rounded-b px-2 py-0.5 bg-black/60 text-white z-10 text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl duration-300'>
+                    { title }
+                  </p>
+                }
             </div>
           </div>
         )

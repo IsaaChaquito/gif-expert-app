@@ -20,7 +20,7 @@ export const AddCategory = ({ onAddCategory }) => {
   }
 
   return (
-    <form onSubmit={ onSubmit } className="w-auto flex justify-center items-center">
+    <form onSubmit={ onSubmit } className="w-auto flex justify-center items-center mb-2">
       <input 
         onChange={ onChangeInput }
         type="text" 

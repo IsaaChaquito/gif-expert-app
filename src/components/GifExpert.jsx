@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { AddCategory, GifGrid } from '../components'
+import SimpleBar from 'simplebar-react';
+import 'simplebar-react/dist/simplebar.min.css';
 
 export const GifExpert = () => {
   
@@ -7,7 +9,7 @@ export const GifExpert = () => {
 
   const onAddCategory = ( newCategory ) => {
 
-    if( categories.length > 1 ) return //TODO: REMOVE this line after testing
+    if( categories.length > 2 ) return
 
     const repeatedCategory = categories.some(c => c.toLowerCase() === newCategory.toLowerCase())
 
@@ -17,10 +19,9 @@ export const GifExpert = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center"> 
-
-      
-      <div className="w-full h-24 fixed top-0 backdrop-blur-sm bg-white/30 z-20 flex justify-center items-center font-['elounda-regular'] text-4xl sm:scale-110 md:scale-125 p-2 text-nowrap duration-300">
+    <div className="w-full min-h-screen flex flex-col justify-center items-center mb-0"> 
+ 
+      <div className="m-5 flex justify-center items-center font-['elounda-regular'] text-4xl sm:scale-110 md:scale-125 p-2 text-nowrap duration-300">
         <svg  className='w-16 h-10 mr-1' xmlns="http://www.w3.org/2000/svg">
           <text x="0" y="32" className="text  stroke-orange-500 stroke-2 fill-none scale-95">GIF</text>
         </svg> 
@@ -31,19 +32,28 @@ export const GifExpert = () => {
       </div>
 
       
-      <div className='w-full flex flex-col justify-center items-center mt-28 '>
+      <div className='w-full flex flex-col justify-center items-center mb-2 '>
+
         <AddCategory onAddCategory={ onAddCategory }/>
         
-          {
-            categories.map( ( category)  => (
-              <GifGrid  
-                key={category}
-                category={ category }
-              />
-            ))
-          }
+          <div className='w-[90%] xl:w-3/4 h-[calc(100vh-260px)] overflow-y-auto bg-slate-100 rounded-sm z-10 duration-150'>
+            <SimpleBar className="w-full h-full relative !z-10" autoHide={false}>
+              {
+                categories.map( ( category)  => (
+                  <GifGrid  
+                    key={category}
+                    category={ category }
+                  />
+                ))
+              }
+
+            </SimpleBar>
+          </div>
       </div>
 
+      <div className="pagination w-[300px] sm:w-[400px] h-16 bg-slate-200 duration-300">
+
+      </div>
 
     </div> 
   )

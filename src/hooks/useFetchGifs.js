@@ -7,15 +7,13 @@ const useFetchGifs = ( category ) => {
   const [isLoading, setIsLoading] = useState(true)
 
   const getImages = async () => {
-
     const newImages = await getGifs( category )
     setImages( newImages )
   }
 
   useEffect( () => {
-    getImages()
+    category && getImages()
     setIsLoading(false)
-    // console.log({images});
   }, [])
   
   return {
