@@ -23,7 +23,19 @@ export const GifGrid = ({ category }) => {
 
   if( category === "" ) return null
 
-  const flipKey = `${windowWidth}-${images.map(img => img.id).join('-')}`;
+  const getGridColumns = () => {
+
+    if (windowWidth > 1720) return 6;
+    if (windowWidth > 1200) return 5;
+    if (windowWidth > 960) return 4;
+    if (windowWidth > 720) return 3;
+    if (windowWidth > 480) return 2;
+    return 1;
+
+  };
+
+
+  const flipKey = `${getGridColumns()}`;
 
   return (
 
@@ -37,9 +49,14 @@ export const GifGrid = ({ category }) => {
               { category }
             </h3>
             
-            {/* <Flipper className="w-full" flipKey={flipKey} spring={{ stiffness: 200, damping: 30 }}>
+            <Flipper className="w-full" flipKey={flipKey} spring={{ stiffness: 200, damping: 30 }}>
 
-              <div className="w-full h-full grid grid-cols-[repeat(auto-fit,minmax(200px,200px))] gap-10 justify-center items-center text-black ">
+              <div 
+                className="w-full grid  gap-4 justify-center items-center text-black"
+                style={{
+                  gridTemplateColumns: `repeat(${getGridColumns()}, minmax(200px, 200px))`,
+                }}
+              >
 
                 {
                   images.map( ({ id, title, url }) => (
@@ -54,19 +71,7 @@ export const GifGrid = ({ category }) => {
 
               </div>
 
-            </Flipper> */}
-
-<Flipper className="w-full" flipKey={flipKey} spring={{ stiffness: 200, damping: 30 }} debug>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
-              {images.map(({ id, title, url }) => (
-                <Flipped key={id} flipId={id}>
-                  <div>
-                    <GifItem id={id} title={title} url={url} />
-                  </div>
-                </Flipped>
-              ))}
-            </div>
-          </Flipper>
+            </Flipper>
 
           </div>
       }

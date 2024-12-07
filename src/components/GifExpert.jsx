@@ -24,6 +24,8 @@ export const GifExpert = () => {
 
   return (
     <div className="w-full min-h-screen flex flex-col justify-center items-center mb-0"> 
+
+    {/* <FlipGrid /> testing grid with react-flip-toolkit */}
  
       <div className="m-5 flex justify-center items-center font-['elounda-regular'] text-4xl sm:scale-110 md:scale-125 p-2 text-nowrap duration-300">
         <svg  className='w-16 h-10 mr-1' xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +42,7 @@ export const GifExpert = () => {
 
         <AddCategory onAddCategory={ onAddCategory }/>
         
-          <div className='w-[90%] xl:w-3/4 h-[calc(100vh-260px)] overflow-y-auto bg-slate-1000 rounded-sm z-10 duration-150'>
+          <div className='w-full h-[calc(100vh-260px)] overflow-y-auto bg-rose-2000 rounded-sm z-10 duration-150'>
             <SimpleBar className="w-full h-full relative !z-10" autoHide={false}>
               {
                 // categories.map( ( category)  => (
