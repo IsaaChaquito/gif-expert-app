@@ -39,9 +39,7 @@ export const GifItem = ({ id, title, url }) => {
         state.isScale && (
           <div className="fixed top-0 left-0 w-full h-full backdrop-blur-sm bg-black/80 z-50 animate-[fade-in_0.2s_ease]">
             <div 
-              onClick={ 
-                (e) => (e.target === e.currentTarget) && handleScaleImage() 
-              }
+              onClick={ (e) => (e.target === e.currentTarget) && handleScaleImage() }
               className='relative flex justify-center items-center w-full h-full'
             > 
               <CloseIcon 
@@ -55,31 +53,17 @@ export const GifItem = ({ id, title, url }) => {
                 Esc
               </div>
 
-              {/* <div className='relative w-full flex justify-center items-center'>  
-                <img 
-                  className="w-[80%] max-w-[1200px] aspect-video rounded shadow-2xl" 
-                  src={ url } 
-                  alt={ title } 
-                />
-                { 
-                  title &&
-                    <p className='absolute bottom-0 px-2 py-0.5 bg-black/60 text-white z-10 text-center text-xs sm:text-sm md:text-lg lg:text-xl xl:text-2xl '>
-                      { title }
-                    </p>
-                }
-              </div> */}
-
-                <img 
-                  className="w-[80%] max-w-[1200px] aspect-video rounded shadow-2xl" 
-                  src={ url } 
-                  alt={ title } 
-                />
-                {
-                  title &&
-                  <p className='absolute bottom-0 w-full rounded-b px-2 py-0.5 bg-black/60 text-white z-10 text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl duration-300'>
-                    { title }
-                  </p>
-                }
+              <img 
+                className="w-[80%] max-w-[1200px] aspect-video rounded shadow-2xl" 
+                src={ url } 
+                alt={ title } 
+              />
+              {
+                title &&
+                <p className='absolute bottom-0 w-full rounded-b px-2 py-0.5 bg-black/60 text-white z-10 text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl duration-300'>
+                  { title }
+                </p>
+              }
             </div>
           </div>
         )
