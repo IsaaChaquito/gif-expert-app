@@ -10,17 +10,17 @@ export const GifExpert = () => {
 
   const onAddCategory = ( newCategory ) => {
 
-    if( categories.length > 2 ) return
-
     const repeatedCategory = categories.some(c => c.toLowerCase() === newCategory.toLowerCase())
 
     if( !repeatedCategory ){
-      setCategories( [ newCategory, ...categories])
+      setCategories( prevCategories => [ newCategory, ...prevCategories])
       onSelectedCategory( newCategory )
     }
   }
 
   const onSelectedCategory = ( category ) => setSelectedCategory( category )
+
+  const selectedPageIndex = ( category ) => categories.findIndex( c => c.toLowerCase() === category.toLowerCase() )
 
   return (
     <div className="w-full min-h-screen flex flex-col justify-center items-center mb-0"> 
@@ -61,7 +61,7 @@ export const GifExpert = () => {
         (categories?.length > 0) &&  
           <Pagination 
             data={ categories } 
-            selectedPage={ selectedCategory }
+            selectedPageIndex={ selectedPageIndex(selectedCategory) }
             onSelectedPage={ onSelectedCategory }  
           />  }
     

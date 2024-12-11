@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react"
 
 export const GifGrid = ({ category }) => {
 
-  
   const { images, isLoading } = useFetchGifs( category )
 
   const [gifs, setGifs] = useState( images )  
@@ -39,11 +38,11 @@ export const GifGrid = ({ category }) => {
 
     if (windowWidth > 1720) return 6;
     if (windowWidth > 1200) return 5;
-    if (windowWidth > 960) return 4;
-    if (windowWidth > 720) return 3;
-    if (windowWidth > 480) return 2;
-    return 1;
+    if (windowWidth > 960)  return 4;
+    if (windowWidth > 720)  return 3;
+    if (windowWidth > 480)  return 2;
 
+    return 1;
   };
   
 
@@ -52,7 +51,7 @@ export const GifGrid = ({ category }) => {
   }
 
 
-  const flipKey = `${getGridColumns()}`;
+  const flipKey = `${getGridColumns()}+${gifs.length}`;
 
   return (
 
