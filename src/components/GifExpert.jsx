@@ -42,8 +42,8 @@ export const GifExpert = () => {
 
         <AddCategory onAddCategory={ onAddCategory }/>
         
-          <div className='w-full h-[calc(100vh-260px)] min-h-[400px] overflow-y-auto bg-rose-2000 rounded-sm z-10 duration-150'>
-            <SimpleBar className="w-full h-full relative !z-10" autoHide={false}>
+          <div className='w-full h-[calc(100vh-260px)] min-h-[400px]  overflow-y-auto bg-rose-2000 rounded-sm z-10 duration-150 flex justify-center items-center'>
+            <SimpleBar className="w-full h-full relative !z-10 flex items-center" autoHide={false}>
               {
                 // categories.map( ( category)  => (
                   <GifGrid  

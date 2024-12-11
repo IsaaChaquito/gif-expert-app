@@ -2,15 +2,27 @@
 import { GifItem } from "./GifItem"
 import useFetchGifs from "../hooks/useFetchGifs"
 import { Flipped, Flipper } from 'react-flip-toolkit'
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export const GifGrid = ({ category }) => {
 
   
   const { images, isLoading } = useFetchGifs( category )
+
+  const [gifs, setGifs] = useState( images )  
+  const gridRef = useRef(null)
   const [windowWidth, setWindowWidth] = useState(window.innerWidth); 
 
   useEffect(() => {
+    if (gridRef.current) {
+      console.log('grid width', gridRef.current.innerWidth);
+    }
+  }, [gridRef?.current?.innerWidth]);
+
+  useEffect(() => {
+
+    setGifs(images)
+
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
@@ -19,7 +31,7 @@ export const GifGrid = ({ category }) => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [images]);
 
   if( category === "" ) return null
 
@@ -33,6 +45,11 @@ export const GifGrid = ({ category }) => {
     return 1;
 
   };
+  
+
+  const handleDeleteGif = ( id ) => {
+    setGifs( prevState => prevState.filter( gif => gif.id !== id ) )
+  }
 
 
   const flipKey = `${getGridColumns()}`;
@@ -42,27 +59,34 @@ export const GifGrid = ({ category }) => {
     <>
 
       { isLoading
-        ? <p className="text-black">Loading...</p> 
-        : <div className="w-full flex flex-col justify-center items-center gap-5">
+        ? <p className="text-black font-medium text-lt text-center p-2">Loading...</p> 
+        : <div className="w-full flex flex-col justify-center items-center gap-5 bg-red-3000">
 
             <h3 className="text-start text-black capitalize font-medium text-xl m-2">
               { category }
             </h3>
             
-            <Flipper className="w-full" flipKey={flipKey} spring={{ stiffness: 200, damping: 30 }}>
+            <Flipper className="w-full " flipKey={flipKey} spring={{ stiffness: 200, damping: 30 }}>
 
               <div 
-                className="w-full grid  gap-4 justify-center items-center text-black"
+                ref={ gridRef }
+                className="w-full grid gap-10 justify-center items-center text-black "
                 style={{
                   gridTemplateColumns: `repeat(${getGridColumns()}, minmax(200px, 200px))`,
                 }}
               >
 
                 {
-                  images.map( ({ id, title, url }) => (
+                  gifs.map( ({ id, title, url }) => (
                     <Flipped key={id} flipId={`${id}-gif`} >
                       <div>
-                        <GifItem key={id} id={id} title={title} url={url} />
+                        <GifItem 
+                          key={id} 
+                          id={id} 
+                          title={title} 
+                          url={url} 
+                          handleDeleteGif={ () => handleDeleteGif( id ) }
+                        />
                       </div>
                     </Flipped>
 
